@@ -2,23 +2,34 @@ import React from 'react'
 import './Linkcard.css'
 
 import ImgTwitter from './../img/img-twitter.png'
+import ImgGithub from './../img/img-github.png'
+import ImgLinkedin from './../img/img-linkedin.png'
 
-function Linkcard() {
-    return(
-        <div className="link-card">
-            <div className="container-link-handle">
-             <div>
-                 <img src={ImgTwitter} className="card-img"/>
-             </div>
-              <div>
-                 <span>Twitter Handle</span>
-              </div>
-
-            
-            </div>
-        </div>
-    )
-
+const ImgMap = {
+  "twitter": ImgTwitter,
+  "github": ImgGithub,
+  "linkedin": ImgLinkedin
 }
 
-export default Linkcard
+function LinkCard(props) {
+  return (
+    <div className={`link-card bg-${props.title}`}>
+      <a href={props.link} className="hyperlink">
+      <div className="container-link-handle">
+        <div>
+          <img src={ImgMap[props.title]} className="card-img"/>
+        </div>
+        <div className="handle-name">
+          <h3 className="username">{props.username}</h3>
+        </div>
+      </div>
+
+      <div className="handle-description">
+        <p>{props.tagline}</p>
+      </div>
+      </a>
+    </div>
+  )
+}
+
+export default LinkCard
